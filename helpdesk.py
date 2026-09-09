@@ -2,6 +2,7 @@ import platform
 import socket
 import os
 import getpass
+import shutil
 
 
 def informacoes_computador():
@@ -47,36 +48,46 @@ def testar_porta():
     except OSError:
         print(f"Porta {porta} em {host}: FECHADA ou INACESSÍVEL")
 
-print("=========================================")
-print("       HELP DESK DIAGNOSTIC TOOL")
-print("=========================================")
+def verificar_armazenamento():
+    print("\n===== VERIFICAR ARMAZENAMENTO =====")
+    total, usado, livre = shutil.disk_usage("C:\\")
+    gb = 1024 ** 3
+    print(f"Espaço total: {total / gb:.2f} GB")
+    print(f"Espaço usado: {usado / gb:.2f} GB")
+    print(f"Espaço livre: {livre / gb:.2f} GB")
 
-print("1 - Informações do computador")
-print("2 - Testar conexão com a internet")
-print("3 - Testar DNS")
-print("4 - Testar porta TCP")
-print("5 - Verificar armazenamento")
-print("0 - Sair")
+while True:
+    print("\n=========================================")
+    print("       HELP DESK DIAGNOSTIC TOOL")
+    print("=========================================")
 
-opcao = input("Escolha uma opção: ")
+    print("1 - Informações do computador")
+    print("2 - Testar conexão com a internet")
+    print("3 - Testar DNS")
+    print("4 - Testar porta TCP")
+    print("5 - Verificar armazenamento")
+    print("0 - Sair")
 
-if opcao == "1":
-    informacoes_computador()
+    opcao = input("Escolha uma opção: ")
 
-elif opcao == "2":
-    testar_internet()
+    if opcao == "1":
+        informacoes_computador()
 
-elif opcao == "3":
-    testar_dns()
+    elif opcao == "2":
+        testar_internet()
 
-elif opcao == "4":
-    testar_porta()
+    elif opcao == "3":
+        testar_dns()
 
-elif opcao == "5":
-    print("Você escolheu: Verificar armazenamento")
+    elif opcao == "4":
+        testar_porta()
 
-elif opcao == "0":
-    print("Encerrando o programa...")
+    elif opcao == "5":
+        verificar_armazenamento()
 
-else:
-    print("Opção inválida.")
+    elif opcao == "0":
+        print("Encerrando o programa...")
+        break
+
+    else:
+        print("Opção inválida.")
