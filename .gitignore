@@ -1,0 +1,13 @@
+# Arquivos gerados pelo Python
+__pycache__/
+*.pyc
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Variáveis de ambiente / segredos
+.env
+
+# Configurações locais do VS Code
+.vscode/
